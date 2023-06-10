@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktaktoe/screens/screen_controller.dart';
 
 void main() {
   runApp(const TikTakToe());
@@ -13,7 +14,7 @@ class TikTakToe extends StatelessWidget {
       home: Scaffold(
         body: Container(
           color: Colors.amber[700],
-          child: Center(),
+          child: const ScreenController(),
         ),
       ),
     );
