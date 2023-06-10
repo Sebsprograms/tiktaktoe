@@ -1,6 +1,8 @@
 class TikTacToe {
   static const String playerX = "X";
+  static const String setX = "XXX";
   static const String playerO = "O";
+  static const String setO = "OOO";
 
   String currentPlayer = playerO;
   String winner = "-";
@@ -23,35 +25,56 @@ class TikTacToe {
   void checkForWinner() {
     checkIfFilled();
     checkIfRowWins();
+    checkIfColumnWins();
+    checkIfCrossWins();
   }
 
   void checkIfColumnWins() {
-    for (int c = 0; c < board.length; c++) {
-      String first = board[c][0];
-      for (int r = 1; r < board[r].length; r++) {
-        String element = board[c][r];
+    for (int i = 0; i < board.length; i++) {
+      String set = "";
+      for (int x = 0; x < board.length; x++) {
+        set += board[x][i];
       }
+      checkSet(set);
     }
   }
 
-  void checkIfCrossWins() {}
+  void checkIfCrossWins() {
+    String set1 = "";
+    String set2 = "";
+    int x = 2;
+    for (int i = 0; i < board.length; i++) {
+      set1 += board[i][i];
+      set2 += board[i][x];
+      x--;
+    }
+    checkSet(set1);
+    checkSet(set2);
+  }
 
   void checkIfRowWins() {
     for (List<String> row in board) {
-      if (row.join("").contains(" ")) return;
-      bool result = true;
-      String first = row[0];
-      for (int i = 1; i < row.length; i++) {
-        if (first != row[i]) {
-          result = false;
-        }
-      }
-      if (result) {
-        winner = first;
-        isComplete = true;
-        return;
-      }
+      checkSet(row.join(""));
     }
+  }
+
+  void checkSet(String set) {
+    if (set == setX) {
+      setXasWinner();
+    }
+    if (set == setO) {
+      setOasWinner();
+    }
+  }
+
+  void setOasWinner() {
+    winner = playerO;
+    isComplete = true;
+  }
+
+  void setXasWinner() {
+    winner = playerX;
+    isComplete = true;
   }
 
   void checkIfFilled() {
