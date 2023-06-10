@@ -13,7 +13,7 @@ class Score extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String result = winner == "" ? "Draw!" : "$winner won!";
+    String result = winner == "-" ? "Draw!" : "$winner won!";
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

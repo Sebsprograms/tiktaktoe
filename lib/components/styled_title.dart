@@ -10,7 +10,7 @@ class StyledTitle extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.tiltPrism(
-        fontSize: 48,
+        fontSize: 56,
       ),
     );
   }

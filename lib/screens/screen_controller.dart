@@ -31,10 +31,10 @@ class _ScreenControllerState extends State<ScreenController> {
     });
   }
 
-  void setScoreScreen(String winner) {
+  void setScoreScreen(String newWinner) {
     setState(() {
       currentScreen = scoreScreen;
-      winner = winner;
+      winner = newWinner;
     });
   }
 
@@ -45,7 +45,9 @@ class _ScreenControllerState extends State<ScreenController> {
     );
     switch (currentScreen) {
       case gameScreen:
-        activeScreen = const Game();
+        activeScreen = Game(
+          finishGame: setScoreScreen,
+        );
         break;
       case scoreScreen:
         activeScreen = Score(
